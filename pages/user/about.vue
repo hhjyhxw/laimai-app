@@ -6,13 +6,13 @@
 		</view>
 		<view class="row b-b">
 			<text class="tit">贡献</text>
-			<text class="tiv">WCZ\KBQ</text>
+			<text class="tiv"></text>
 		</view>
 		<view class="row b-b">
 			<text class="tit">邮箱</text>
-			<text class="tiv">unimall@iotechn.com</text>
+			<!-- <text class="tiv"></text> -->
 		</view>
-		<text class="tcp">由重庆驽驹科技有限公司开发</text>
+		<text class="tcp"></text>
 	</view>
 </template>
 

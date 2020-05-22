@@ -6,7 +6,7 @@
 			<block v-for="(item, index) in groupShopList" :key="index">
 				<navigator class="favorite-item" :class="{'b-b': index!==groupShopList.length-1}" :url="'/pages/product/detail?id=' + item.spuId + '&gid=' + item.id">
 					<view class="image-wrapper">
-						<image :src="item.img + '?x-oss-process=style/200px'" :class="[item.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('groupShopList', index)"
+						<image :src="item.img" :class="[item.loaded]" mode="aspectFill" lazy-load @load="onImageLoad('groupShopList', index)"
 						 @error="onImageError('groupShopList', index)"></image>
 					</view>
 					<view class="item-right">

@@ -12,7 +12,7 @@
 					<text class="name">{{item.userNickName?item.userNickName:('用户' + item.userId)}}</text>
 					<text class="con">{{item.content}}</text>
 					<view v-if="item.imgList && item.imgList.length > 0" class="imgs">
-						<image @click="previewImg(item.imgList, imgIndex)" v-for="(imgItem, imgIndex) in item.imgList" :key="imgIndex" class="ig" :src="imgItem + '?x-oss-process=style/200px'"></image>
+						<image @click="previewImg(item.imgList, imgIndex)" v-for="(imgItem, imgIndex) in item.imgList" :key="imgIndex" class="ig" :src="imgItem"></image>
 					</view>
 					<view class="bot">
 						<text class="attr">购买类型：{{item.skuTitle}}</text>

@@ -25,7 +25,7 @@
 		
 		<view class="row default-row">
 			<text class="tit">设为默认</text>
-			<switch :checked="addressData.defaultAddress" color="#fa436a" @change="switchChange" />
+			<switch :checked="addressData.isDefault" color="#fa436a" @change="switchChange" />
 		</view>
 		<button class="add-btn" @click="confirm">提交</button>
 	</view>
@@ -43,7 +43,7 @@
 					city: '',
 					county: '',
 					address: '',
-					defaultAddress: 0,
+					isDefault: 0,
 					def: false
 				},
 				lotusAddressData:{
@@ -59,6 +59,7 @@
 			if(option.type==='edit'){
 				title = '编辑收货地址'
 				this.addressData = JSON.parse(option.data)
+				this.addressData.isDefault = parseInt(this.addressData.isDefault);
 			}
 			this.manageType = option.type;
 			uni.setNavigationBarTitle({
@@ -67,7 +68,7 @@
 		},
 		methods: {
 			switchChange(e){
-				this.addressData.defaultAddress = e.detail.value?1:0
+				this.addressData.isDefault = e.detail.value?1:0
 				this.addressData.def = e.detail.value
 			},
 			

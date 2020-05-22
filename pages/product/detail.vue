@@ -4,7 +4,7 @@
 			<swiper indicator-dots circular=true duration="400">
 				<swiper-item class="swiper-item" v-for="(item,index) in goods.imgList" :key="index">
 					<view class="image-wrapper">
-						<image :src="item + '?x-oss-process=style/600px'" class="loaded" mode="aspectFill"></image>
+						<image :src="item" class="loaded" mode="aspectFill"></image>
 					</view>
 				</swiper-item>
 			</swiper>
@@ -150,7 +150,7 @@
 			<view class="mask"></view>
 			<view class="layer attr-content" @click.stop="stopPrevent">
 				<view class="a-t">
-					<image v-if="goods.img" :src="(selectedSku.img?selectedSku.img:goods.img) + '?x-oss-process=style/200px'"></image>
+					<image v-if="goods.img" :src="(selectedSku.img?selectedSku.img:goods.img)"></image>
 					<view class="right">
 						<text class="price">¥{{isVip ? (selectedSku.vipPrice / 100.0 + ' [VIP]') : selectedSku.price / 100.0}}</text>
 						<text class="stock">库存：{{selectedSku.stock}}件</text>

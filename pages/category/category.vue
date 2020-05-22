@@ -10,7 +10,7 @@
 				<text class="s-item">{{item.title}}</text>
 				<view class="t-list">
 					<view @click="navToList(titem.id)" v-if="titem.parentId === item.id" class="t-item" v-for="titem in item.childrenList" :key="titem.id">
-						<image :src="titem.picUrl + '?x-oss-process=style/200px'"></image>
+						<image :src="titem.picUrl"></image>
 						<text>{{titem.title}}</text>
 					</view>
 				</view>
