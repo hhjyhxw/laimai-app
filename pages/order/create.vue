@@ -218,8 +218,9 @@
 				if (that.addressData.id) {
 					that.orderReqeust.addressId = that.addressData.id
 				}
+				// JSON.stringify(that.orderReqeust)
 				that.$api.request('order', 'takeOrder', {
-					orderRequest : JSON.stringify(that.orderReqeust),
+					orderRequestStr :JSON.stringify(that.orderReqeust),
 					channel: uni.getSystemInfoSync().platform
 				}, failres => {
 					that.submiting = false
