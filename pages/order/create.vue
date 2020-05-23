@@ -147,6 +147,7 @@
 		onLoad(option) {
 			//商品数据
 			this.isVip = this.$api.isVip()
+			
 			const that = this
 			if (option.takeway) {
 				that.orderReqeust.takeWay = option.takeway
@@ -157,7 +158,8 @@
 			let skuCategoryPriceMap = {}
 			that.orderReqeust.skuList.forEach(item => {
 				totalOriginalPrice += item.originalPrice*item.num
-				totalPrice += that.isVip ? (item.vipPrice*item.num) :  (item.price*item.num)
+				// totalPrice += that.isVip ? (item.vipPrice*item.num) :  (item.price*item.num) vip用户使用vip价
+				totalPrice += item.price*item.num;
 				//构建category价格Map
 				item.categoryIdList.forEach(catItem => {
 					if (skuCategoryPriceMap[catItem]) {
@@ -167,9 +169,11 @@
 					}
 				})
 			})
-			that.skuCategoryPriceMap = skuCategoryPriceMap
-			that.orderReqeust.totalOriginalPrice = totalOriginalPrice
-			that.orderReqeust.totalPrice = totalPrice
+			
+			that.skuCategoryPriceMap = skuCategoryPriceMap;
+			that.orderReqeust.totalOriginalPrice = totalOriginalPrice;
+			that.orderReqeust.totalPrice = totalPrice;
+			
 			that.$api.request('coupon', 'getUserCoupons').then(res => {
 				that.couponList = res.data
 			})

@@ -302,8 +302,21 @@
 				this.selectedSkuIndex = skuIndex
 			},
 			//加入购物车
-			addCart(e) {
+			async addCart(e) {
 				const that = this
+				//判断是否有默认地址
+				let res = await that.$api.request('address', 'getDefAddress', {});
+				let flag = true;
+				if (res.data==null || res.data.id==null || res.data.id=='' ) {
+					that.$api.msg('请添加默认地址');
+					flag = false;
+					uni.navigateTo({
+						url: `/pages/address/create`
+					})
+				}
+				if(!flag) return;
+				
+				//添加到购车车
 				if (!that.selectedSku.id) {
 					that.specClass = 'none'
 					that.toggleSpec()
@@ -319,7 +332,7 @@
 						} else {
 							that.$api.msg('添加购物车成功')
 						}
-
+				
 					})
 				}
 			},

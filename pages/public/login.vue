@@ -107,8 +107,10 @@
 								});
 							}).then(res => {
 								that.logining = false
-								that.$store.commit('login', res.data)
-								uni.setStorageSync('userInfo', res.data)
+								var userInfo = res.data;
+								userInfo.level =userInfo.level!=null?parseInt(userInfo.level):0
+								that.$store.commit('login', userInfo)
+								uni.setStorageSync('userInfo', userInfo)
 								if (that.$api.prePage().lodaData) {
 									that.$api.prePage().loadData()
 								}

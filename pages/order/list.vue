@@ -17,7 +17,7 @@
 					<view v-for="(item,index) in tabItem.orderList" :key="index" class="order-item">
 						<navigator :url="'/pages/order/detail?orderid=' + item.id">
 							<view class="i-top b-b">
-								<text class="time">{{item.gmtCreate | dateFormat}}</text>
+								<text class="time">{{item.createdTime | dateFormat}}</text>
 								<text class="state">{{statusMap[item.status]}}</text>
 							</view>
 
@@ -66,6 +66,7 @@
 				</scroll-view>
 			</swiper-item>
 		</swiper>
+		
 		<neil-modal
 			:show="refundShow" 
 			@close="refundShow = false" 
@@ -91,16 +92,16 @@
 		data() {
 			return {
 				statusMap: {
-					10: '未付款',
-					12: '正在拼团',
-					20: '待出库',
-					30: '待收货',
-					40: '待评价',
-					50: '已完成',
-					60: '退款中',
-					70: '已退款',
-					80: '已取消',
-					90: '已取消(系统)'
+					0: '未付款',
+					1: '正在拼团',
+					2: '待出库',
+					3: '待收货',
+					4: '待评价',
+					5: '已完成',
+					6: '退款中',
+					7: '已退款',
+					8: '已取消',
+					9: '已取消(系统)'
 				},
 				submiting: false,
 				refundShow: false,
@@ -108,42 +109,42 @@
 				refundOrderItem: '',
 				tabCurrentIndex: 0,
 				navList: [{
-						state: 0,
+						state: '',
 						text: '全部',
 						loadingType: 'more',
 						pageNo: 1,
 						orderList: []
 					},
 					{
-						state: 10,
+						state: 0,
 						text: '待付款',
 						loadingType: 'more',
 						pageNo: 1,
 						orderList: []
 					},
 					{
-						state: 20,
+						state: 2,
 						text: '待出库',
 						loadingType: 'more',
 						pageNo: 1,
 						orderList: []
 					},
 					{
-						state: 30,
+						state: 3,
 						text: '待收货',
 						loadingType: 'more',
 						pageNo: 1,
 						orderList: []
 					},
 					{
-						state: 40,
+						state: 4,
 						text: '待评价',
 						loadingType: 'more',
 						pageNo: 1,
 						orderList: []
 					},
 					{
-						state: 60,
+						state: 6,
 						text: '退款中',
 						loadingType: 'more',
 						pageNo: 1,
