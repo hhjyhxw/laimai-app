@@ -70,7 +70,8 @@ const request = (_gp, _mt, data = {}, failCallback) => {
 			method: 'POST',
 			header: {
 				'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-				'ACCESSTOKEN': accessToken
+				'accessToken': accessToken,
+				// 'ACCESSTOKEN': accessToken
 			},
 			success: (res) => {
 				if (res.statusCode === 200) {
@@ -106,7 +107,7 @@ const request = (_gp, _mt, data = {}, failCallback) => {
 							failCallback(res.data)
 						} else {
 							uni.showToast({
-								title: res.data.errmsg,
+								title: res.data.message,
 								icon: 'none'
 							})
 						}

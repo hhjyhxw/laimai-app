@@ -311,7 +311,7 @@
 					that.$api.msg('请添加默认地址');
 					flag = false;
 					uni.navigateTo({
-						url: `/pages/address/create`
+						url: `/pages/address/addforgoods?fromtype=goods&spuId=`+this.goods.id
 					})
 				}
 				if(!flag) return;
@@ -355,8 +355,21 @@
 					})
 				}
 			},
-			buy() {
+			async buy() {
 				const that = this
+				//判断是否有默认地址
+				let res = await that.$api.request('address', 'getDefAddress', {});
+				let flag = true;
+				if (res.data==null || res.data.id==null || res.data.id=='' ) {
+					that.$api.msg('请添加默认地址');
+					flag = false;
+					uni.navigateTo({
+						url: `/pages/address/addforgoods?fromtype=goods&spuId=`+this.goods.id
+					})
+				}
+				if(!flag) return;
+				
+				
 				if (!that.selectedSku.id) {
 					that.specClass = 'none'
 					that.toggleSpec()

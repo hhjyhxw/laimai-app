@@ -52,7 +52,14 @@
 				"navigationBarTitleText": "",
 				"disableScroll" : true
 			}
-		}, {
+		},
+		 {
+			"path": "pages/address/addforgoods",
+			"style": {
+				"navigationBarTitleText": "",
+				"disableScroll" : true
+			}
+		},{
 			"path": "pages/product/search",
 			"style": {
 				"navigationBarTitleText": "搜索"

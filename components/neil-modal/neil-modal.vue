@@ -119,7 +119,8 @@
         height: 100%;
         top: 0;
         left: 0;
-        z-index: 1000;
+       /* z-index: 1000; */
+	    z-index: -9999;
 		transition:visibility 200ms ease-in;
 		
 		&.neil-modal--show{

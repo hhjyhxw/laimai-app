@@ -154,24 +154,22 @@
 						addressId : that.addressData.id
 					});
 					if(resedit==true && that.fromtype!=null){
-						uni.redirectTo({
-							url: `/pages/product/detail?id=`+that.spuId
-						})
-					}else{
-						that.$api.prePage().refreshList(data, that.manageType);
+						// that.$api.prePage().refreshList(data, that.manageType);
 						uni.navigateBack()
+						// uni.redirectTo({
+						// 	url: `/pages/product/detail?id=`+that.spuId
+						// })
 					}
 				} else {
 					let resadd = that.$api.request('address', 'addAddress', that.addressData);
-						if(resadd==true && that.fromtype!=null){
-							this.$api.msg("that.fromtype==="+(that.fromtype!=null));
-							uni.redirectTo({
-								url: `/pages/product/detail?id=`+that.spuId
-							})
-						}else{
-							that.$api.prePage().refreshList(data, that.manageType);
-							uni.navigateBack()
-						}
+					// that.$api.prePage().refreshList(data, that.manageType);
+					uni.navigateBack()
+						// if(resadd==true && that.fromtype!=null){
+						// 	this.$api.msg("that.fromtype==="+(that.fromtype!=null));
+						// 	uni.redirectTo({
+						// 		url: `/pages/product/detail?id=`+that.spuId
+						// 	})
+						// }
 				}
 				
 			},

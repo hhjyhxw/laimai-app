@@ -17,7 +17,7 @@
 					<view v-for="(item,index) in tabItem.orderList" :key="index" class="order-item">
 						<navigator :url="'/pages/order/detail?orderid=' + item.id">
 							<view class="i-top b-b">
-								<text class="time">{{item.createdTime | dateFormat}}</text>
+								<text class="time">{{item.createtimeStr}}</text>
 								<text class="state">{{statusMap[item.status]}}</text>
 							</view>
 
@@ -67,13 +67,22 @@
 			</swiper-item>
 		</swiper>
 		
-		<neil-modal
+		<!-- <neil-modal
 			:show="refundShow" 
 			@close="refundShow = false" 
 			title="退款" 
 			@cancel="refundShow = false" 
 			@confirm="refundConfirm">
 			<input v-model="inputRefundReason" style="margin:20upx" placeholder="简要描述退款理由.." />
+		</neil-modal> -->
+		
+		<neil-modal :show="refundShow" @close="closeModal('4')" title="退款" @confirm="refundConfirm"  :class="{refundZindex:refundShow==true}">
+		    <view class="input-view" >
+		        <view class="input-name">
+		            <view>退款理由:</view>
+		            <input type="text" v-model="inputRefundReason" style="z-index: -2;" placeholder="简要描述退款理由..." />
+		        </view>
+		    </view>
 		</neil-modal>
 	</view>
 </template>
@@ -176,6 +185,19 @@
 		},
 
 		methods: {
+			bindClick(type) {
+			  //this.refundConfirm();
+			},
+			closeModal(type) {
+			    console.log(`监听到close`)
+			    this.refundShow = false
+			},
+			bindBtn(type) {
+			    uni.showToast({
+			        title: `点击了${type==='cancel'?'取消':'确定'}按钮`,
+			        icon: 'none'
+			    })
+			},
 			//获取订单列表
 			loadData(source) {
 				const that = this
@@ -666,5 +688,8 @@
 		100% {
 			opacity: .2
 		}
+	}
+	.refundZindex{
+		z-index: 1000;
 	}
 </style>

@@ -15,8 +15,8 @@
 			@close="cancel" 
 			title="编辑" 
 			@cancel="cancel" 
-			@confirm="confirm">
-			<input v-model="inputContent" style="margin:20upx" placeholder="请输入..." />
+			@confirm="confirm"  :class="{zindex1000:inputShow==true}">
+			<input v-model="inputContent" style="margin:20upx;z-index: -2;" placeholder="请输入..." />
 		</neil-modal>
 
 		<neil-modal 
@@ -24,7 +24,7 @@
 			@close="cancel" 
 			title="选择性别" 
 			@cancel="cancel" 
-			@confirm="confirmGender">
+			@confirm="confirmGender" :class="{zindex1000:genderShow==true}">
 			<view>
                 <radio-group style="text-align:center" @change="genderRadioChange">
                 <label v-for="(item, index) in genders" :key="item.value">
@@ -53,7 +53,7 @@
 				feild: undefined,
 				inputContent: '',
 				genderShow: false,
-				gender: undefined,
+				gender: 0,
 				genders: [{name: '保密', value: 0 },{name: '男', value: 1}, {name: '女', value: 2}]
 			};
 		},
@@ -81,9 +81,12 @@
 					return
 				}
 				let obj = {}
-				obj[that.feild] = that.inputContent
+				// obj[that.feild] = that.inputContent,
+				// obj[that.gender] = that.gender;
+				obj.nickname = that.inputContent;
+				obj.gender = that.gender;
 				that.$api.request('user', 'syncUserInfo', obj).then(res => {
-					that.userInfo[that.feild] = that.inputContent
+					that.userInfo[that.feild] = that.inputContent;
 					that.inputContent = ''
 					that.$store.commit('login', that.userInfo)
 				})
@@ -116,6 +119,9 @@
 	
 	page{
 		background: $page-color-base;
+	}
+	.container{
+		z-index: 1000;
 	}
 	.list-cell{
 		display:flex;
@@ -162,6 +168,8 @@
 			transform: translateX(16upx) scale(.84);
 		}
 	}
-
+	.zindex1000{
+		z-index: 1002;
+	}
 
 </style>
