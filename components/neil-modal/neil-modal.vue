@@ -5,7 +5,9 @@
             <view class="neil-modal__header" v-if="title.length > 0">{{title}}</view>
             <view class="neil-modal__content" :class="content ? 'neil-modal--padding' : ''" :style="{textAlign:align}">
                 <template v-if="content">
-                    <text class="modal-content">{{content}}</text>
+					<view :class="{'neil-modal--show':isOpen}">
+						<text  class="modal-content">{{content}}</text>
+					</view>
                 </template>
                 <template v-else>
                     <slot />

@@ -173,7 +173,7 @@
 							uni.navigateBack()
 						}
 				}
-				
+s				
 			},
 		},
 		components:{

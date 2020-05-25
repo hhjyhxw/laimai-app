@@ -83,6 +83,7 @@
 		            <input type="text" v-model="inputRefundReason" style="z-index: -2;" placeholder="简要描述退款理由..." />
 		        </view>
 		    </view>
+
 		</neil-modal>
 	</view>
 </template>
@@ -97,6 +98,15 @@
 			uniLoadMore,
 			empty,
 			neilModal
+		},
+		filters: {
+			priceFormat(price) {
+				return price / 100.0
+			},
+			// dateFormat(time) {
+			// 	// return 'temp'
+			// 	return formatDate(new Date(time),'yyyy-MM-dd HH:mm')
+			// }
 		},
 		data() {
 			return {

@@ -368,8 +368,7 @@
 					})
 				}
 				if(!flag) return;
-				
-				
+
 				if (!that.selectedSku.id) {
 					that.specClass = 'none'
 					that.toggleSpec()
