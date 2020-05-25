@@ -14,7 +14,7 @@
 			<!-- 背景色区域 -->
 			<view class="titleNview-background" :style="{backgroundColor:titleNViewBackground}"></view>
 			<swiper autoplay="true" interval="3000" duration="500" class="carousel" circular @change="swiperChange">
-				<swiper-item v-for="(item, index) in carouselList" :key="index" class="carousel-item" @click="naviageToPage(item.url)">
+				<swiper-item v-for="(item, index) in carouselList" :key="index" class="carousel-item" @click="naviageToPage(item.pageUrl)">
 					<image :src="item.imgUrl" />
 				</swiper-item>
 			</swiper>
@@ -27,13 +27,13 @@
 		</view>
 		<!-- 分类 -->
 		<view class="cate-section">
-			<view v-for="(item, index) in categoryButtomList" :key="index" @click="naviageToPage(item.url)" class="cate-item">
+			<view v-for="(item, index) in categoryButtomList" :key="index" @click="naviageToPage(item.pageUrl)" class="cate-item">
 				<image :src="item.imgUrl"></image>
 				<text>{{item.title}}</text>
 			</view>
 		</view>
 		
-		<view v-if="banner" @click="naviageToPage(banner.url)" class="ad-1">
+		<view v-if="banner" @click="naviageToPage(banner.pageUrl)" class="ad-1">
 			<image :src="banner.imgUrl" mode="scaleToFill"></image>
 		</view>
 		
