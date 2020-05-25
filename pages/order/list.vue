@@ -17,7 +17,7 @@
 					<view v-for="(item,index) in tabItem.orderList" :key="index" class="order-item">
 						<navigator :url="'/pages/order/detail?orderid=' + item.id">
 							<view class="i-top b-b">
-								<text class="time">{{item.createdTime | dateFormat}}</text>
+								<text class="time">{{item.createtimeStr}}</text>
 								<text class="state">{{statusMap[item.status]}}</text>
 							</view>
 
@@ -73,7 +73,7 @@
 			title="退款" 
 			@cancel="refundShow = false" 
 			@confirm="refundConfirm">
-			<input v-model="inputRefundReason" style="margin:20upx" placeholder="简要描述退款理由.." />
+			<input v-model="inputRefundReason"  style="margin:20upx;" placeholder="" /> <!-- 简要描述退款理由.. -->
 		</neil-modal>
 	</view>
 </template>
@@ -88,6 +88,15 @@
 			uniLoadMore,
 			empty,
 			neilModal
+		},
+		filters: {
+			priceFormat(price) {
+				return price / 100.0
+			},
+			// dateFormat(time) {
+			// 	// return 'temp'
+			// 	return formatDate(new Date(time),'yyyy-MM-dd HH:mm')
+			// }
 		},
 		data() {
 			return {

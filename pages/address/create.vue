@@ -44,7 +44,9 @@
 					county: '',
 					address: '',
 					isDefault: 0,
-					def: false
+					def: false,
+					lnt:'',
+					lat:''
 				},
 				lotusAddressData:{
 					visible:false,
@@ -118,23 +120,36 @@
 					return
 				}
 				
-				//this.$api.prePage()获取上一页实例，可直接调用上页所有数据和方法，在App.vue定义
+				//判断当前地址是否有可选配送点
+				that.$api.request('location', 'checkDistributionpoit', {
+					addressJson:JSON.stringify(that.addressData)
+				}).then(res => {
+					if(res.code==200){
+						that.addressData.lnt = res.data.lnt;
+						that.addressData.lat = res.data.lat;
+						
+						
+						//this.$api.msg(`地址${this.manageType=='edit' ? '修改': '添加'}成功`);
+						if (that.manageType === 'edit') {
+							that.$api.request('address', 'updateAddress', {
+								...that.addressData,
+								addressId : that.addressData.id
+							}).then(res => {
+								that.$api.prePage().refreshList(data, that.manageType);
+								uni.navigateBack()
+							})
+						} else {
+							that.$api.request('address', 'addAddress', that.addressData).then(res => {
+								that.$api.prePage().refreshList(data, that.manageType);
+								uni.navigateBack()
+							})
+						}
+					}else{
+						that.$api.msg(res.message);
+						return;
+					}
+				})
 				
-				//this.$api.msg(`地址${this.manageType=='edit' ? '修改': '添加'}成功`);
-				if (that.manageType === 'edit') {
-					that.$api.request('address', 'updateAddress', {
-						...that.addressData,
-						addressId : that.addressData.id
-					}).then(res => {
-						that.$api.prePage().refreshList(data, that.manageType);
-						uni.navigateBack()
-					})
-				} else {
-					that.$api.request('address', 'addAddress', that.addressData).then(res => {
-						that.$api.prePage().refreshList(data, that.manageType);
-						uni.navigateBack()
-					})
-				}
 				
 			},
 		},
